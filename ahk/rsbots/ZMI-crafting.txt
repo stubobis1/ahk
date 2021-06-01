@@ -1,0 +1,60 @@
+;runecrafting (ZMI)
+Loop, 30
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 773
+
+MouseClick, L, 541, 146,, % mouseSpeed()
+
+Sleep, 640
+
+MouseClick, L, 943, 69,, % mouseSpeed()
+
+Sleep, 640
+;TP to rune
+MouseClick, L, 1519, 753,, % mouseSpeed()
+
+Sleep, 4195
+;craft
+MouseClick, L, 876, 495,, % mouseSpeed()
+
+Sleep, 3056
+;tp back
+MouseClick, L, 1480, 756,, % mouseSpeed()
+
+Sleep, 6632
+;ladder
+MouseClick, L, 720, 454,, % mouseSpeed()
+
+Sleep, 1664
+;bank
+MouseClick, L, 1406, 151,, % mouseSpeed()
+
+Sleep, 9680
+;deposit all
+MouseClick, L, 894, 821,, % mouseSpeed()
+
+Sleep, 1000
+
+}
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}
+

@@ -1,0 +1,65 @@
+;nat rune craft
+Loop, 10
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+;at the bank with it open
+
+MouseClick, L, 546, 147,, % mouseSpeed()
+
+Sleep, 1695
+
+MouseClick, L, 932, 72,, % mouseSpeed()
+
+Sleep, 828
+
+
+;TP to rune
+
+MouseClick, L, 1480, 759,, % mouseSpeed()
+
+Sleep, 3617
+
+MouseClick, L, 807, 559,, % mouseSpeed()
+
+Sleep, 2328
+
+Sleep, 1200
+
+;TP Back
+MouseClick, L, 1514, 766,, % mouseSpeed()
+
+Sleep, 7258
+
+MouseClick, L, 785, 504,, % mouseSpeed()
+
+Sleep, 4031
+
+MouseClick, L, 1203, 319,, % mouseSpeed()
+
+Sleep, 10000
+
+MouseClick, L, 1559, 770,, % mouseSpeed()
+
+Sleep, 612
+
+}
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

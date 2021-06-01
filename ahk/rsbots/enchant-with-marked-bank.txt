@@ -1,0 +1,420 @@
+
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn ; Enable warnings to assist with detecting common errors.
+;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+#SingleInstance, Force
+
+CoordMode, Mouse, Screen
+CoordMode, Pixel, Screen
+
+global slayerColor:= 0xF8F903
+
+global minMouseSpeed:= 3
+global maxMouseSpeed:= 10
+
+global minRandWait := 10000
+global maxRandWait := 15000
+global loopTimer := 50
+
+global loopAmt := 400
+global ShouldRun:= true
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := 1440
+global BottomSearchArea := A_ScreenHeight
+
+
+
+Loop, %loopAmt%
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 164
+Sleep, 164
+
+MouseClick, L, 547, 143
+
+Sleep, 335
+Sleep, 335
+
+MouseClick, L, 944, 72
+
+Sleep, 547
+Sleep, 547
+
+MouseClick, L, 1593, 743
+
+Sleep, 273
+Sleep, 273
+
+MouseClick, L, 1523, 763
+
+Sleep, 414
+Sleep, 414
+
+MouseClick, L, 1598, 741
+
+Sleep, 297
+Sleep, 297
+
+MouseClick, L, 1557, 760
+
+Sleep, 547
+Sleep, 547
+
+MouseClick, L, 1595, 746
+
+Sleep, 203
+Sleep, 203
+
+MouseClick, L, 1610, 765
+
+Sleep, 781
+Sleep, 781
+
+MouseClick, L, 1589, 748
+
+Sleep, 227
+Sleep, 227
+
+MouseClick, L, 1601, 794
+
+Sleep, 703
+Sleep, 703
+
+MouseClick, L, 1585, 746
+
+Sleep, 211
+Sleep, 211
+
+MouseClick, L, 1563, 789
+
+Sleep, 664
+Sleep, 664
+
+MouseClick, L, 1589, 747
+
+Sleep, 242
+Sleep, 242
+
+MouseClick, L, 1524, 794
+
+Sleep, 648
+Sleep, 648
+
+MouseClick, L, 1588, 746
+
+Sleep, 312
+Sleep, 312
+
+MouseClick, L, 1487, 800
+
+Sleep, 734
+Sleep, 734
+
+MouseClick, L, 1593, 748
+
+Sleep, 297
+Sleep, 297
+
+MouseClick, L, 1482, 830
+
+Sleep, 562
+Sleep, 562
+
+MouseClick, L, 1592, 748
+
+Sleep, 281
+Sleep, 281
+
+MouseClick, L, 1517, 828
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1592, 746
+
+Sleep, 260
+Sleep, 260
+
+MouseClick, L, 1554, 834
+
+Sleep, 492
+Sleep, 492
+
+MouseClick, L, 1589, 745
+
+Sleep, 234
+Sleep, 234
+
+MouseClick, L, 1592, 830
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1589, 749
+
+Sleep, 273
+Sleep, 273
+
+MouseClick, L, 1483, 867
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1591, 750
+
+Sleep, 265
+Sleep, 265
+
+MouseClick, L, 1516, 861
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1592, 743
+
+Sleep, 359
+Sleep, 359
+
+MouseClick, L, 1558, 859
+
+Sleep, 554
+Sleep, 554
+
+MouseClick, L, 1586, 752
+
+Sleep, 260
+Sleep, 260
+
+MouseClick, L, 1594, 860
+
+Sleep, 523
+Sleep, 523
+
+MouseClick, L, 1586, 746
+
+Sleep, 265
+Sleep, 265
+
+MouseClick, L, 1561, 903
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1588, 751
+
+Sleep, 281
+Sleep, 281
+
+MouseClick, L, 1589, 899
+
+Sleep, 570
+Sleep, 570
+
+MouseClick, L, 1596, 745
+
+Sleep, 281
+Sleep, 281
+
+MouseClick, L, 1517, 901
+
+Sleep, 562
+Sleep, 562
+
+MouseClick, L, 1591, 749
+
+Sleep, 257
+Sleep, 257
+
+MouseClick, L, 1474, 900
+
+Sleep, 656
+Sleep, 656
+
+MouseClick, L, 1585, 744
+
+Sleep, 258
+Sleep, 258
+
+MouseClick, L, 1472, 933
+
+Sleep, 671
+Sleep, 671
+
+MouseClick, L, 1589, 748
+
+Sleep, 260
+Sleep, 260
+
+MouseClick, L, 1511, 930
+
+Sleep, 633
+Sleep, 633
+
+MouseClick, L, 1591, 752
+
+Sleep, 281
+Sleep, 281
+
+MouseClick, L, 1571, 950
+
+Sleep, 516
+Sleep, 516
+
+MouseClick, L, 1591, 743
+
+Sleep, 265
+Sleep, 265
+
+MouseClick, L, 1611, 935
+
+Sleep, 867
+Sleep, 867
+
+MouseClick, L, 1594, 755
+
+Sleep, 344
+Sleep, 344
+
+MouseClick, L, 1616, 964
+
+Sleep, 593
+Sleep, 593
+
+MouseClick, L, 1587, 746
+
+Sleep, 260
+Sleep, 260
+
+MouseClick, L, 1563, 962
+
+Sleep, 531
+Sleep, 531
+
+MouseClick, L, 1590, 752
+
+Sleep, 265
+Sleep, 265
+
+MouseClick, L, 1517, 975
+
+Sleep, 601
+Sleep, 601
+
+MouseClick, L, 1591, 749
+
+Sleep, 281
+Sleep, 281
+
+MouseClick, L, 1475, 965
+
+Sleep, 835
+Sleep, 835
+;Bank
+ClickOnPixelOffset(slayerColor, 0,15)
+
+Sleep, 976
+Sleep, 976
+
+MouseClick, L, 888, 821
+
+Sleep, 1000
+Sleep, 1000
+
+}
+
+
+
+
+!Numpad1::updateColor1()
+updateColor1()
+{
+     MouseGetPos, outx, outy
+     PixelGetColor, slayerColor, %outx%, %outy%
+	 
+	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %slayerColor%
+}
+
+
+
+!Numpad0::ToggleShouldRun()
+ToggleShouldRun(){
+    ShouldRun := !ShouldRun
+    MsgBox, %ShouldRun%
+}
+
+!c::ClickOnPixel(lookforcolor1)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x,y,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+ClickOnPixelOffset(color, offsetx, offsety)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L, % x + offsetx , % y + offsety ,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+!l::LookForPixel(lookforcolor1)
+LookForPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseMove, x,y, % mouseSpeed()
+        
+        return true
+    }
+}
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+Sleep, % rand(minRandWait,maxRandWait)
+}
+
+mouseSpeed()
+{
+   
+   return rand(2,4)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

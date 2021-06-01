@@ -1,0 +1,152 @@
+
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn ; Enable warnings to assist with detecting common errors.
+;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+#SingleInstance, Force
+
+CoordMode, Mouse, Screen
+CoordMode, Pixel, Screen
+
+global slayerColor:= 0xF8F903
+global minMouseSpeed:= 3
+global maxMouseSpeed:= 10
+
+global minRandWait := 10000
+global maxRandWait := 15000
+global loopTimer := 50
+
+global loopAmt := 20000
+global ShouldRun:= true
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := 1440
+global BottomSearchArea := A_ScreenHeight
+
+Loop
+{
+	
+    
+	    Loop, %loopAmt%
+		{
+			if(ShouldRun)
+			{
+				; Seers Teleport
+				MouseClick, L, 1592, 823,, % mouseSpeed()
+
+				Sleep, 1375
+				Sleep, 1375
+			
+			
+				if(ClickOnPixelOffset(slayerColor, 15,10))
+				{
+					Sleep, 3304
+					Sleep, 3304
+
+					MouseClick, L, 421, 412,, % mouseSpeed()
+
+					Sleep, 3742
+					Sleep, 3742
+
+					MouseClick, L, 678, 777,, % mouseSpeed()
+
+					Sleep, 5289
+					Sleep, 4289
+
+					MouseClick, L, 984, 727,, % mouseSpeed()
+
+					Sleep, 2593
+					Sleep, 2593
+
+					MouseClick, L, 450, 681,, % mouseSpeed()
+
+					Sleep, 2789
+					Sleep, 2789
+
+					MouseClick, L, 885, 604,, % mouseSpeed()
+					Sleep, 1000
+					Sleep, 1000
+					Sleep, 1000
+				}
+			
+		}
+	}
+	Sleep, 1000
+
+}
+
+!Numpad0::ToggleShouldRun()
+ToggleShouldRun(){
+    ShouldRun := !ShouldRun
+    MsgBox, %ShouldRun%
+}
+
+!c::ClickOnPixel(lookforcolor1)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x,y,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+ClickOnPixelOffset(color, offsetx, offsety)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L, % x + offsetx , % y + offsety ,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+!l::LookForPixel(lookforcolor1)
+LookForPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseMove, x,y, % mouseSpeed()
+        
+        return true
+    }
+}
+
+sleepAfterAction()
+{}
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+}
+
+mouseSpeed()
+{
+   
+   return rand(3,8)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

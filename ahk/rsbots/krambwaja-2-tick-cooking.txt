@@ -1,0 +1,80 @@
+
+Loop, 100
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 633
+
+MouseClick, L, 542, 141,, % rand(4,10)
+
+Sleep, 922
+
+MouseClick, L, 939, 73,, % rand(4,10)
+
+Sleep, 523
+
+;; RANGE LOCATION
+MouseClick, L, 1528, 280,, % rand(4,10)
+
+Sleep, 3140
+Sleep, 3140
+
+
+;At the range
+
+
+
+
+Loop, 28{
+Send, 2
+Sleep, 500
+Send, 2
+MouseClick, L, 1597, 977,, % mouseSpeed()
+Send, 2
+Sleep, 50
+Send, 2
+MouseClick, L, 880, 460,, % mouseSpeed()
+Send, 2
+
+}
+Sleep, 1000
+Send, 2
+
+
+Sleep, 1219
+;; LOCATION OF BANK FROM RANGE
+MouseClick, L, 120, 610,, % rand(4,10)
+
+Sleep, 6000
+
+
+MouseClick, L, 902, 828,, % rand(4,10)
+
+
+
+}
+
+
+randSleep()
+{
+	Sleep, % rand(50,100)
+}
+
+mouseSpeed()
+{
+   
+   return rand(2,4)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}
+

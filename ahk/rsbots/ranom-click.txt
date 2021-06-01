@@ -1,0 +1,26 @@
+;Randomized
+Loop, 1
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+sleep, % rand(300, 400)
+Loop, 500
+{
+MouseClick, L, % rand(800,850), rand(800,850)
+
+sleep, % rand(10000, 15000)
+}
+
+}
+
+rand(min, max)
+
+ {
+   random, ran, %min%, %max%
+   return ran
+ }

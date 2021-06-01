@@ -1,0 +1,83 @@
+global slayerColor:= 0xF8F903
+global minMouseSpeed:= 1
+global maxMouseSpeed:= 4
+
+global minRandWait := 10000
+global maxRandWait := 15000
+global loopTimer := 50
+
+global loopAmt := 20000
+global ShouldRun:= true
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := 1440
+global BottomSearchArea := A_ScreenHeight
+
+
+Loop, 100
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 132
+
+;MouseClick, L, 1153, 543,, % mouseSpeed()
+
+if(ClickOnPixelOffset(slayerColor, 0,15))
+
+Sleep, 600
+
+MouseClick, R, 2243, 1119,, % mouseSpeed()
+
+Sleep, 106
+
+MouseClick, L, 2234, 1183,, % mouseSpeed()
+
+Sleep, 133
+
+MouseClick, L, 1259, 507,, % mouseSpeed()
+
+Sleep, 100
+
+}
+
+
+ClickOnPixelOffset(color, offsetx, offsety)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L, % x + offsetx , % y + offsety ,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+}
+
+mouseSpeed()
+{
+   
+   return rand(minMouseSpeed,maxMouseSpeed)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

@@ -1,0 +1,117 @@
+
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn ; Enable warnings to assist with detecting common errors.
+;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+#SingleInstance, Force
+
+CoordMode, Mouse, Screen
+CoordMode, Pixel, Screen
+
+global lookforcolor:= 0xBEBEC6
+global minMouseSpeed:= 3
+global maxMouseSpeed:= 10
+
+global minRandWait := 50
+global maxRandWait := 10000
+global loopTimer := 50
+
+global loopAmt := 20000
+global ShouldRun:= true
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := A_ScreenWidth
+global BottomSearchArea := A_ScreenHeight
+
+Loop
+{
+	if(ShouldRun)
+    {
+	    Loop, %loopAmt%
+		{
+		
+			if(ClickOnPixel(lookforcolor))
+			{
+				randSleep()
+				MouseClick,L
+				randSleep()
+			}
+			else()
+			{
+			Sleep, % rand(60000,300000)
+			
+			}
+			Sleep, %loopTimer%
+		}
+	}
+	Sleep, 1000
+
+}
+
+
+!u::updateColor()
+updateColor()
+{
+     MouseGetPos, outx, outy
+     PixelGetColor, lookforcolor, %outx%, %outy%
+	 
+	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor%
+}
+
+!Numpad0::ToggleShouldRun()
+ToggleShouldRun(){
+    ShouldRun := !ShouldRun
+}
+
+!c::ClickOnPixel(lookforcolor)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x,y,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+!l::LookForPixel(lookforcolor)
+LookForPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseMove, x,y, % mouseSpeed()
+        
+        return true
+    }
+}
+
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+}
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

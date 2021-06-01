@@ -1,0 +1,125 @@
+
+Loop, 100
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 562
+Sleep, 562
+
+MouseClick, L, 531, 148
+
+Sleep, 445
+Sleep, 445
+
+MouseClick, L, 930, 70
+
+Sleep, 828
+Sleep, 828
+
+MouseClick, L, 1431, 1007
+
+Sleep, 492
+Sleep, 492
+
+MouseClick, L, 1517, 822
+
+Sleep, 2422
+Sleep, 2422
+
+MouseClick, L, 802, 323
+
+Sleep, 2367
+Sleep, 2367
+
+MouseClick, L, 614, 540
+
+Sleep, 398
+Sleep, 398
+
+MouseClick, L, 811, 418
+
+Sleep, 1351
+Sleep, 1351
+
+MouseClick, L, 823, 554
+
+Sleep, 531
+Sleep, 531
+
+MouseClick, L, 588, 535
+
+Sleep, 516
+Sleep, 516
+
+MouseClick, L, 810, 428
+
+Sleep, 1015
+Sleep, 1015
+
+MouseClick, L, 824, 547
+
+Sleep, 562
+Sleep, 562
+
+MouseClick, L, 618, 540
+
+Sleep, 523
+Sleep, 523
+
+MouseClick, L, 822, 416
+
+Sleep, 961
+Sleep, 961
+
+MouseClick, L, 819, 549
+
+Sleep, 555
+Sleep, 555
+
+MouseClick, L, 648, 541
+
+Sleep, 593
+Sleep, 593
+
+MouseClick, L, 842, 427
+
+Sleep, 601
+Sleep, 601
+
+MouseClick, L, 1335, 1027
+
+Sleep, 515
+Sleep, 515
+
+MouseClick, R, 1472, 760
+
+Sleep, 500
+Sleep, 500
+
+MouseClick, L, 1464, 799
+
+Sleep, 1812
+Sleep, 1812
+
+MouseClick, L, 752, 227
+
+Sleep, 4320
+Sleep, 4320
+
+MouseClick, L, 823, 433
+
+Sleep, 1281
+Sleep, 1281
+
+MouseClick, L, 1483, 796
+
+Sleep, 1000
+Sleep, 1000
+
+}

@@ -1,0 +1,85 @@
+;Bowstrings
+Loop, 10
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 586
+
+MouseClick, L, 893, 445
+
+Sleep, 937
+
+MouseClick, L, 736, 146
+
+Sleep, 961
+
+MouseClick, L, 945, 71
+
+Sleep, 914
+
+MouseClick, L, 1542, 160
+
+Sleep, 6679
+
+MouseClick, L, 638, 654
+
+Sleep, 2531
+
+MouseClick, L, 1574, 89
+
+Sleep, 3265
+
+MouseClick, L, 1477, 760
+
+Sleep, 1187
+
+MouseClick, L, 579, 700
+
+Sleep, 2180
+
+Send, {Blind}{Space}
+
+Sleep, 50265
+
+
+
+MouseClick, L, 1541, 133
+
+Sleep, 4359
+
+MouseClick, R, 723, 697
+
+Sleep, 1640
+
+MouseClick, L, 725, 739
+
+Sleep, 1679
+
+
+;upstairs
+
+
+
+MouseClick, L, 1574, 63
+
+Sleep, 6187
+
+MouseClick, L, 873, 296
+
+Sleep, 1836
+
+MouseClick, L, 1466, 764
+
+Sleep, 1492
+
+MouseClick, L, 939, 70
+
+Sleep, 1000
+
+}

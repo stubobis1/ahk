@@ -1,0 +1,78 @@
+
+Loop, 30
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 726
+
+MouseClick, R, 773, 144,, % mouseSpeed()
+
+Sleep, 625
+
+MouseClick, L, 772, 235,, % mouseSpeed()
+
+Sleep, 344
+
+MouseClick, R, 736, 135,, % mouseSpeed()
+
+Sleep, 390
+
+MouseClick, L, 736, 217,, % mouseSpeed()
+
+Sleep, 781
+
+MouseClick, L, 939, 68,, % mouseSpeed()
+
+Sleep, 453
+
+MouseClick, L, 1474, 856,, % mouseSpeed()
+
+Sleep, 429
+
+MouseClick, L, 1561, 968,, % mouseSpeed()
+
+Sleep, 937
+
+
+Send, {Blind}{Space}
+
+Sleep, 16583
+
+MouseClick, L, 804, 485,, % mouseSpeed()
+
+Sleep, 1742
+
+MouseClick, L, 892, 829,, % mouseSpeed()
+
+Sleep, 1000
+
+}
+
+
+mouseSpeed()
+{
+   
+   return rand(3,10)
+}
+
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}
+
+
+^Numpad1::GetPixelColor()
+GetPixelColor(){
+    MouseGetPos, xpos, ypos 
+
+    PixelGetColor, pixelColor, xpos,ypos
+    MsgBox, The cursor is at X%xpos% Y%ypos%. The color is %pixelColor%
+}

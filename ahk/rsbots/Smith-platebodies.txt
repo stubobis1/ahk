@@ -1,0 +1,50 @@
+
+Loop, 450
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 289
+
+MouseClick, L, 543, 143,, % mouseSpeed()
+
+Sleep, 453
+
+MouseClick, L, 1322, 376,, % mouseSpeed()
+
+Sleep, 2203
+Sleep, 2203
+
+MouseClick, L, 659, 512,, % mouseSpeed()
+
+Sleep, 7297
+Sleep, 7297
+
+MouseClick, L, 334, 634,, % mouseSpeed()
+
+Sleep, 2054
+Sleep, 2054
+
+MouseClick, L, 1522, 763,, % mouseSpeed()
+
+Sleep, 200
+
+}
+
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

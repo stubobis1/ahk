@@ -1,0 +1,141 @@
+
+Loop, 100
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 383
+
+;Select amt of first
+MouseClick, R, 543, 143,, % mouseSpeed()
+Sleep, 476
+MouseClick, L, 560, 228,, % mouseSpeed()
+Sleep, 406
+
+;close
+MouseClick, L, 582, 141,, % mouseSpeed()
+Sleep, 640
+
+MouseClick, L, 934, 76,, % mouseSpeed()
+
+Sleep, 812
+Sleep, 812
+
+MouseClick, L, 1562, 818,, % mouseSpeed()
+
+Sleep, 391
+Sleep, 391
+
+MouseClick, L, 1519, 826,, % mouseSpeed()
+
+Sleep, 531
+Sleep, 531
+
+MouseClick, L, 1563, 817,, % mouseSpeed()
+
+Sleep, 305
+Sleep, 305
+
+MouseClick, L, 1512, 826,, % mouseSpeed()
+
+Sleep, 648
+Sleep, 648
+
+MouseClick, L, 1560, 814,, % mouseSpeed()
+
+Sleep, 227
+Sleep, 227
+
+MouseClick, L, 1520, 820,, % mouseSpeed()
+
+Sleep, 632
+Sleep, 632
+
+MouseClick, L, 1568, 816,, % mouseSpeed()
+
+Sleep, 242
+Sleep, 242
+
+MouseClick, L, 1517, 819,, % mouseSpeed()
+
+Sleep, 664
+Sleep, 664
+
+MouseClick, L, 1570, 821,, % mouseSpeed()
+
+Sleep, 320
+Sleep, 320
+
+MouseClick, L, 1511, 826,, % mouseSpeed()
+
+Sleep, 586
+Sleep, 586
+
+MouseClick, L, 1573, 823,, % mouseSpeed()
+
+Sleep, 289
+Sleep, 289
+
+MouseClick, L, 1516, 825,, % mouseSpeed()
+
+Sleep, 625
+Sleep, 625
+
+MouseClick, L, 1568, 824,, % mouseSpeed()
+
+Sleep, 273
+Sleep, 273
+
+MouseClick, L, 1528, 822,, % mouseSpeed()
+
+Sleep, 586
+Sleep, 586
+
+MouseClick, L, 1574, 823,, % mouseSpeed()
+
+Sleep, 242
+Sleep, 242
+
+MouseClick, L, 1525, 820,, % mouseSpeed()
+
+Sleep, 648
+Sleep, 648
+
+MouseClick, L, 1563, 823,, % mouseSpeed()
+
+Sleep, 250
+Sleep, 250
+
+MouseClick, L, 1529, 824,, % mouseSpeed()
+
+Sleep, 1258
+Sleep, 1258
+
+MouseClick, L, 914, 362,, % mouseSpeed()
+
+Sleep, 836
+Sleep, 836
+
+MouseClick, L, 1517, 767,, % mouseSpeed()
+
+Sleep, 1000
+
+}
+
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}
