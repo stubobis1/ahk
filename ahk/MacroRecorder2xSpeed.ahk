@@ -357,7 +357,7 @@ Log(str:="", Keyboard:=0) {
     return
   }
   if (Delay>200)
-    LogArr.Push("Sleep, " (Delay))
+    LogArr.Push("Sleep, " (Delay//2))
   LogArr.Push(Keyboard ? "Send, {Blind}" str : str)
 }
 

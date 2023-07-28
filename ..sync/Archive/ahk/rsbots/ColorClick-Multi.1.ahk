@@ -1,4 +1,4 @@
-
+﻿
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn ; Enable warnings to assist with detecting common errors.
 ;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
@@ -9,42 +9,37 @@ CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
 global lookforcolor1:= 0x000000
-global slayerColor:= 0xF8F903
 global lookforcolor2:= 0x000000
 global lookforcolor3:= 0x000000
-global lookforcolor4:= 0x000000
-global lookforcolor5:= 0x000000
-global lookforcolor6:= 0x000000
 global minMouseSpeed:= 3
 global maxMouseSpeed:= 10
 
-global minRandWait := 500
-global maxRandWait := 2000
+global minRandWait := 50
+global maxRandWait := 10000
 global loopTimer := 50
 
 global loopAmt := 20000
-global ShouldRun:= true
+global ShouldRun:= false
 
-global LeftSearchArea := 0
-global TopSearchArea := 0
+global LeftSearchArea := 215
+global TopSearchArea := 215
 
 
-global RightSearchArea := 1440
-global BottomSearchArea := A_ScreenHeight
+global RightSearchArea := 1315
+global BottomSearchArea := 788
 
 Loop
 {
-	
-    
+	if(ShouldRun)
+    {
 	    Loop, %loopAmt%
 		{
-			if(ShouldRun)
-			{
-			if(ClickOnPixelOffset(slayerColor, 0,15))
-			{
-				randSleep()
-			}
-			
+		
+			ClickOnPixel(lookforcolor1)
+			ClickOnPixel(lookforcolor2)
+			ClickOnPixel(lookforcolor3)
+			randSleep()
+			Sleep, %loopTimer%
 		}
 	}
 	Sleep, 1000
@@ -52,8 +47,8 @@ Loop
 }
 
 
-!Numpad1::updateColor1()
-updateColor1()
+!u::updateColor()
+updateColor()
 {
      MouseGetPos, outx, outy
      PixelGetColor, lookforcolor1, %outx%, %outy%
@@ -61,8 +56,8 @@ updateColor1()
 	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor1%
 }
 
-!Numpad2::updateColor2()
-updateColor2()
+!i::updateColor()
+updateColor()
 {
      MouseGetPos, outx, outy
      PixelGetColor, lookforcolor2, %outx%, %outy%
@@ -71,8 +66,8 @@ updateColor2()
 }
 
 
-!Numpad3::updateColor3()
-updateColor3()
+!o::updateColor()
+updateColor()
 {
      MouseGetPos, outx, outy
      PixelGetColor, lookforcolor3, %outx%, %outy%
@@ -81,40 +76,9 @@ updateColor3()
 }
 
 
-!Numpad4::updateColor3()
-updateColor4()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor4, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor4%
-}
-
-
-!Numpad5::updateColor5()
-updateColor5()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor5, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor5%
-}
-
-
-!Numpad6::updateColor6()
-updateColor6()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor6, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor6%
-}
-
-
 !Numpad0::ToggleShouldRun()
 ToggleShouldRun(){
     ShouldRun := !ShouldRun
-    MsgBox, %ShouldRun%
 }
 
 !c::ClickOnPixel(lookforcolor1)
@@ -128,21 +92,6 @@ ClickOnPixel(color)
     else
     {
         MouseClick, L,  x,y,, % mouseSpeed()        
-        return true
-    }
-	
-}
-
-ClickOnPixelOffset(color, offsetx, offsety)
-{
-    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
-    if ErrorLevel
-    {
-        return false
-    }
-    else
-    {
-        MouseClick, L, % x + offsetx , % y + offsety ,, % mouseSpeed()        
         return true
     }
 	
@@ -164,8 +113,6 @@ LookForPixel(color)
     }
 }
 
-sleepAfterAction()
-{}
 
 randSleep()
 {
@@ -175,7 +122,7 @@ randSleep()
 mouseSpeed()
 {
    
-   return rand(2,7)
+   return rand(4,15)
 }
 
 rand(min, max)

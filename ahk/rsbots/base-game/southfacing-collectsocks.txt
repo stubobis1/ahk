@@ -1,0 +1,63 @@
+; collect sockkks
+
+
+global minRandWait := 50
+global maxRandWait := 5000
+global loopTimer := 500
+
+Loop, 1000
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - LaundryMaid1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 312
+
+MouseClick, L, 221, 603,, % mouseSpeed()
+
+Sleep, 15703
+
+Random, countt, 27, 34
+Loop, %countt%
+{
+Send, {Blind}1
+Sleep, 700
+Sleep, % rand(0,100)
+MouseClick, L, 780, 533,, % mouseSpeed()
+Sleep, 500
+Sleep, % rand(0,500)
+}
+
+MouseClick, L, 1369, 461,, % mouseSpeed()
+
+Sleep, 15593
+Sleep, % rand(0,1000)
+
+MouseClick, L, 1474, 759,, % mouseSpeed()
+
+Sleep, 1000
+
+}
+
+
+
+randSleep()
+{
+	Sleep, % rand(1000,30000)
+}
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

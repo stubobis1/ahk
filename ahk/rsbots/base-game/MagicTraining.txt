@@ -1,4 +1,4 @@
-
+; magic training -- click on a guy
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn ; Enable warnings to assist with detecting common errors.
 ;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
@@ -30,12 +30,9 @@ Loop
 {
 	if(ShouldRun)
     {
-	    Loop, %loopAmt%
-		{
-			randSleep()
-			Sleep, %loopTimer%
-			ClickOnPixel(lookforcolor)
-		}
+		Sleep, %loopTimer%
+		ClickOnPixel(lookforcolor)
+		randSleep()
 	}
 	Sleep, 1000
 
@@ -51,7 +48,7 @@ updateColor()
 	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor%
 }
 
-!Numpad0::ToggleShouldRun()
+!g::ToggleShouldRun()
 ToggleShouldRun(){
     ShouldRun := !ShouldRun
 }
@@ -93,12 +90,12 @@ Action(x,y)
 {
 	MouseClick, R,  x,y,, % mouseSpeed()
 	Sleep, 50
-	MouseClick, L,  x,y + 40,, % mouseSpeed()
+	MouseClick, L,  x,y + 50,, % mouseSpeed()
 }
 
 randSleep()
 {
-	Sleep, % rand(50,100)
+	Sleep, % rand(1000,30000)
 }
 
 mouseSpeed()

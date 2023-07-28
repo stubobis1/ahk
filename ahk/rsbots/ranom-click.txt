@@ -9,7 +9,7 @@ tt = RuneLite - stu_bob_is1 ahk_class SunAwtFrame
 WinWait, %tt%
 IfWinNotActive, %tt%,, WinActivate, %tt%
 sleep, % rand(300, 400)
-Loop, 500
+Loop, 5000
 {
 MouseClick, L, % rand(800,850), rand(800,850)
 

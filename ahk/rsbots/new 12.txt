@@ -9,7 +9,7 @@ CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
 global lookforcolor1:= 0x000000
-global slayerColor:= 0xF8F903
+global slayerColor:= 0x00FF00
 global lookforcolor2:= 0x000000
 global lookforcolor3:= 0x000000
 global lookforcolor4:= 0x000000
@@ -18,8 +18,8 @@ global lookforcolor6:= 0x000000
 global minMouseSpeed:= 3
 global maxMouseSpeed:= 10
 
-global minRandWait := 500
-global maxRandWait := 2000
+global minRandWait := 10000
+global maxRandWait := 15000
 global loopTimer := 50
 
 global loopAmt := 20000
@@ -56,9 +56,9 @@ Loop
 updateColor1()
 {
      MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor1, %outx%, %outy%
+     PixelGetColor, slayerColor, %outx%, %outy%
 	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor1%
+	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %slayerColor%
 }
 
 !Numpad2::updateColor2()
@@ -175,7 +175,7 @@ randSleep()
 mouseSpeed()
 {
    
-   return rand(2,7)
+   return rand(3,8)
 }
 
 rand(min, max)

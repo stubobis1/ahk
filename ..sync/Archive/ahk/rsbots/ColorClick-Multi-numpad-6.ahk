@@ -1,4 +1,4 @@
-
+﻿
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn ; Enable warnings to assist with detecting common errors.
 ;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
@@ -9,7 +9,6 @@ CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
 global lookforcolor1:= 0x000000
-global slayerColor:= 0xF8F903
 global lookforcolor2:= 0x000000
 global lookforcolor3:= 0x000000
 global lookforcolor4:= 0x000000
@@ -18,33 +17,52 @@ global lookforcolor6:= 0x000000
 global minMouseSpeed:= 3
 global maxMouseSpeed:= 10
 
-global minRandWait := 500
-global maxRandWait := 2000
+global minRandWait := 50
+global maxRandWait := 10000
 global loopTimer := 50
 
 global loopAmt := 20000
-global ShouldRun:= true
+global ShouldRun:= false
 
 global LeftSearchArea := 0
 global TopSearchArea := 0
 
 
-global RightSearchArea := 1440
+global RightSearchArea := A_ScreenWidth
 global BottomSearchArea := A_ScreenHeight
 
 Loop
 {
-	
-    
+	if(ShouldRun)
+    {
 	    Loop, %loopAmt%
 		{
-			if(ShouldRun)
-			{
-			if(ClickOnPixelOffset(slayerColor, 0,15))
+		
+			if(ClickOnPixel(lookforcolor1))
 			{
 				randSleep()
 			}
-			
+			else if(ClickOnPixel(lookforcolor2))
+			{
+				randSleep()
+			}
+			else if(ClickOnPixel(lookforcolor3))
+			{
+				randSleep()
+			}
+			else if(ClickOnPixel(lookforcolor4))
+			{
+				randSleep()
+			}
+			else if(ClickOnPixel(lookforcolor5))
+			{
+				randSleep()
+			}
+			else if(ClickOnPixel(lookforcolor6))
+			{
+				randSleep()
+			}
+			Sleep, %loopTimer%
 		}
 	}
 	Sleep, 1000
@@ -114,7 +132,6 @@ updateColor6()
 !Numpad0::ToggleShouldRun()
 ToggleShouldRun(){
     ShouldRun := !ShouldRun
-    MsgBox, %ShouldRun%
 }
 
 !c::ClickOnPixel(lookforcolor1)
@@ -128,21 +145,6 @@ ClickOnPixel(color)
     else
     {
         MouseClick, L,  x,y,, % mouseSpeed()        
-        return true
-    }
-	
-}
-
-ClickOnPixelOffset(color, offsetx, offsety)
-{
-    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
-    if ErrorLevel
-    {
-        return false
-    }
-    else
-    {
-        MouseClick, L, % x + offsetx , % y + offsety ,, % mouseSpeed()        
         return true
     }
 	
@@ -175,7 +177,7 @@ randSleep()
 mouseSpeed()
 {
    
-   return rand(2,7)
+   return rand(4,15)
 }
 
 rand(min, max)

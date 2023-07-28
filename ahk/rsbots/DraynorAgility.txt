@@ -1,0 +1,243 @@
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn ; Enable warnings to assist with detecting common errors.
+;SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+#SingleInstance, Force
+
+
+
+
+
+CoordMode, Mouse, Screen
+CoordMode, Pixel, Screen
+
+global lookforcolor:= 0xFE01FD
+global minMouseSpeed:= 3
+global maxMouseSpeed:= 10
+
+global minRandWait := 200
+global shortMaxRandWait := 1000
+global maxRandWait := 10000
+global loopTimer := 500
+
+global loopAmt := 100
+global ShouldRun:= false
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := A_ScreenWidth
+global BottomSearchArea := A_ScreenHeight
+
+Loop, %loopAmt%
+{
+	SetTitleMatchMode, 2
+	CoordMode, Mouse, Window
+
+	tt = RuneLite - StuBobis1 ahk_class SunAwtFrame
+	WinWait, %tt%
+	IfWinNotActive, %tt%,, WinActivate, %tt%
+
+
+
+		
+	ClickOnPixel(lookforcolor)
+	Sleep 6000
+	randSleep()
+	doALoop()
+	Sleep, %loopTimer%
+
+
+}
+
+!m::doALoop()
+doALoop() ; with HighAlch
+{
+
+MouseClick, L, 1615, 844
+
+Sleep, 484
+
+MouseClick, L, 1615, 844
+
+Sleep, 1941
+
+MouseClick, L, 818, 370
+
+
+Sleep, 8031
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 1613, 840
+
+Sleep, 359
+
+MouseClick, L, 1609, 836
+
+Sleep, 922
+
+MouseClick, L, 743, 566
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 8531
+
+MouseClick, L, 1616, 850
+
+Sleep, 610
+
+MouseClick, L, 1612, 840
+
+Sleep, 1015
+
+MouseClick, L, 847, 533
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 8641
+
+MouseClick, L, 1612, 843
+
+Sleep, 531
+
+MouseClick, L, 1610, 843
+
+Sleep, 1047
+
+MouseClick, L, 777, 560
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 5938
+
+MouseClick, L, 1624, 848
+
+Sleep, 375
+
+MouseClick, L, 1608, 839
+
+Sleep, 843
+
+MouseClick, L, 818, 620
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 4782
+
+MouseClick, L, 1622, 843
+
+Sleep, 437
+
+MouseClick, L, 1600, 833
+
+Sleep, 828
+
+MouseClick, L, 946, 524
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 5250
+
+MouseClick, L, 1617, 850
+
+Sleep, 500
+
+MouseClick, L, 1598, 834
+
+Sleep, 891
+
+MouseClick, L, 932, 438
+
+shortRandSleep()
+
+ if LookForPixel(lookforcolor)
+ 	Return  
+Sleep, 1000
+}
+
+
+
+
+
+!u::updateColor()
+updateColor()
+{
+     MouseGetPos, outx, outy
+     PixelGetColor, lookforcolor, %outx%, %outy%
+	 
+	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor%
+}
+
+!Numpad0::ToggleShouldRun()
+ToggleShouldRun(){
+    ShouldRun := !ShouldRun
+}
+
+!c::ClickOnPixel(lookforcolor)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x - 5,y + 10,, % mouseSpeed()        
+        return true
+    }
+	
+}
+
+!l::LookForPixel(lookforcolor)
+LookForPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseMove, x,y, % mouseSpeed()
+        
+        return true
+    }
+}
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+}
+
+
+shortRandSleep()
+{
+	Sleep, % rand(minRandWait,shortMaxRandWait)
+}
+
+
+mouseSpeed()
+{
+   
+   return rand(4,15)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

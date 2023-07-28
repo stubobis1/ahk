@@ -8,18 +8,13 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
-global lookforcolor1:= 0x000000
 global slayerColor:= 0xF8F903
-global lookforcolor2:= 0x000000
-global lookforcolor3:= 0x000000
-global lookforcolor4:= 0x000000
-global lookforcolor5:= 0x000000
-global lookforcolor6:= 0x000000
+
 global minMouseSpeed:= 3
 global maxMouseSpeed:= 10
 
-global minRandWait := 500
-global maxRandWait := 2000
+global minRandWait := 10000
+global maxRandWait := 15000
 global loopTimer := 50
 
 global loopAmt := 20000
@@ -40,6 +35,7 @@ Loop
 		{
 			if(ShouldRun)
 			{
+			;Bank
 			if(ClickOnPixelOffset(slayerColor, 0,15))
 			{
 				randSleep()
@@ -56,59 +52,11 @@ Loop
 updateColor1()
 {
      MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor1, %outx%, %outy%
+     PixelGetColor, slayerColor, %outx%, %outy%
 	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor1%
+	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %slayerColor%
 }
 
-!Numpad2::updateColor2()
-updateColor2()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor2, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor2%
-}
-
-
-!Numpad3::updateColor3()
-updateColor3()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor3, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor3%
-}
-
-
-!Numpad4::updateColor3()
-updateColor4()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor4, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor4%
-}
-
-
-!Numpad5::updateColor5()
-updateColor5()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor5, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor5%
-}
-
-
-!Numpad6::updateColor6()
-updateColor6()
-{
-     MouseGetPos, outx, outy
-     PixelGetColor, lookforcolor6, %outx%, %outy%
-	 
-	 MsgBox, The cursor is at X%outx% Y%outy%. The color is %lookforcolor6%
-}
 
 
 !Numpad0::ToggleShouldRun()
@@ -164,9 +112,6 @@ LookForPixel(color)
     }
 }
 
-sleepAfterAction()
-{}
-
 randSleep()
 {
 	Sleep, % rand(minRandWait,maxRandWait)
@@ -175,7 +120,7 @@ randSleep()
 mouseSpeed()
 {
    
-   return rand(2,7)
+   return rand(2,4)
 }
 
 rand(min, max)

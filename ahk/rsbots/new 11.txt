@@ -1,5 +1,5 @@
 
-Loop, 100
+Loop, 1
 {
 
 SetTitleMatchMode, 2
@@ -11,16 +11,15 @@ IfWinNotActive, %tt%,, WinActivate, %tt%
 
 Sleep, 633
 
-MouseClick, L, 542, 141,, % rand(4,10)
+MouseClick, L, 542, 141,, % mouseSpeed()
 
 Sleep, 922
 
-MouseClick, L, 939, 73,, % rand(4,10)
+MouseClick, L, 939, 73,, % mouseSpeed()
 
 Sleep, 523
 
-;; RANGE LOCATION
-MouseClick, L, 1528, 280,, % rand(4,10)
+MouseClick, L, 1327, 280,, % mouseSpeed()
 
 Sleep, 3140
 Sleep, 3140
@@ -28,35 +27,29 @@ Sleep, 3140
 
 ;At the range
 
-
-
-
 Loop, 28{
-Send, 2
-Sleep, 500
-Send, 2
+Send, {2 down}
 MouseClick, L, 1597, 977,, % mouseSpeed()
-Send, 2
-Sleep, 50
-Send, 2
-MouseClick, L, 880, 460,, % mouseSpeed()
-Send, 2
 
+Sleep, 500
+
+MouseClick, L, 880, 460,, % mouseSpeed()
+Send, {2 up}
 }
-Sleep, 1000
-Send, 2
+
 
 
 Sleep, 1219
-;; LOCATION OF BANK FROM RANGE
-MouseClick, L, 120, 610,, % rand(4,10)
+Sleep, 1219
 
-Sleep, 6000
+MouseClick, L, 351, 610,, % mouseSpeed()
 
+Sleep, 3843
+Sleep, 3843
 
-MouseClick, L, 902, 828,, % rand(4,10)
+MouseClick, L, 902, 828,, % mouseSpeed()
 
-
+Sleep, 1000
 
 }
 
