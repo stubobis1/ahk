@@ -1,0 +1,70 @@
+
+Loop, 100
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - StuBobis1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 718
+
+MouseClick, L, 537, 134
+
+Sleep, 1297
+
+Send, {Blind}{Escape}
+
+Sleep, 1266
+sleep, % rand(0, 1000)
+
+MouseClick, L, 1515, 749
+
+Sleep, 484
+sleep, % rand(0, 1000)
+
+MouseClick, L, 1527, 803,, % mouseSpeed()
+
+Sleep, 953
+sleep, % rand(0, 1000)
+
+Send, {Blind}{Space}
+
+Sleep, 16735
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+
+MouseClick, L, 1102, 1000,, % mouseSpeed()
+
+Sleep, 1547
+sleep, % rand(0, 1000)
+
+MouseClick, L, 1558, 750
+
+Sleep, 1000
+
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+
+}
+
+
+
+
+mouseSpeed()
+{
+   
+   return rand(3,10)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

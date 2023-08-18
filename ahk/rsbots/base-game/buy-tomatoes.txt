@@ -1,0 +1,76 @@
+; duel rotten tomatoes -- good
+Loop, 200
+{
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - ILoveTomatoe ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Loop, 15
+{
+
+	sleep, % rand(200, 1000)
+
+	MouseClick, L, 1120, 553,, % mouseSpeed()
+
+	
+	sleep, % rand(200, 1000)
+
+	MouseClick, R, 555, 362,, % mouseSpeed()
+
+	
+	sleep, % rand(200, 1000)
+
+	MouseClick, L, 542, % rand(439, 450),, % mouseSpeed()
+
+	
+	sleep, % rand(200, 1000)
+
+	MouseClick, L, 590, 629,, % mouseSpeed()
+
+	
+	sleep, % rand(200, 1000)
+
+	MouseClick, L, 1522, 749,, % mouseSpeed()
+	
+}
+sleep, % rand(0, 2000)
+
+;MouseClick, L, 1120, 553,, % mouseSpeed()
+
+Send, {Blind}{Escape}
+;MouseClick, L, 934, 73,, % mouseSpeed() ; dangerous
+
+Sleep, 703
+
+Send, {Blind}{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
+
+Sleep, 3000
+sleep, % rand(0, 5000)
+
+MouseClick, L, 416, 982,, % mouseSpeed()
+
+Sleep, 8515
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+sleep, % rand(0, 1000)
+
+MouseClick, L, 815, 560,, % mouseSpeed()
+
+}
+
+
+mouseSpeed()
+{
+   
+   return rand(3,10)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

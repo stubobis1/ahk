@@ -1,0 +1,26 @@
+;High Alch
+Loop, 1066
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - StuBobis1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+sleep, % rand(300, 400)
+Loop, 2
+{
+MouseClick, L, 1617, 837
+
+sleep, % rand(700, 2000)
+}
+
+}
+
+rand(min, max)
+
+ {
+   random, ran, %min%, %max%
+   return ran
+ }

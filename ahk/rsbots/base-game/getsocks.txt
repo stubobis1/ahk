@@ -1,0 +1,40 @@
+
+Loop, 300
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite - LaundryMaid1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 297
+
+MouseClick, L, 1590, 442
+
+Sleep, 16422
+
+Send, {Blind}1{Space}
+
+Sleep, 812
+Loop, 33
+{
+
+MouseClick, L, 864, 528
+
+Sleep, 500
+
+Send, {Blind}1{Space}
+
+Sleep, 500
+}
+MouseClick, L, 122, 613
+
+Sleep, 16172
+
+MouseClick, L, 898, 817
+
+Sleep, 1000
+
+}
