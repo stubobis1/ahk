@@ -1,0 +1,22 @@
+
+Loop, 1
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = ahk ahk_class CabinetWClass
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 1688
+
+Send, {Blind}{Ctrl Down}
+
+Sleep, 1531
+
+Send, {Blind}{Ctrl Up}
+
+Sleep, 1000
+
+}
