@@ -1,22 +1,146 @@
+; oak chop and fletch to arrowshafts
 
-Loop, 1
-{
 
-SetTitleMatchMode, 2
+; Highlight the IRON with this hex color ff6901
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+
+global logimg := "WillowLogs.png"
+global knifeimg := "knife.png"
+global lookforcolor:= 0xff6901
+
+
 CoordMode, Mouse, Window
 
-tt = ahk ahk_class CabinetWClass
-WinWait, %tt%
-IfWinNotActive, %tt%,, WinActivate, %tt%
+global minMouseSpeed := 5
+global maxMouseSpeed := 15
 
-Sleep, 1688
+global minRandShortSleep := 2000
+global maxRandShortSleep := 5000
 
-Send, {Blind}{Ctrl Down}
+global minRandLongSleep := 5000
+global maxRandLongSleep := 15000
 
-Sleep, 1531
 
-Send, {Blind}{Ctrl Up}
+global loopTimer := 50
+global loopAmt := 2000
 
-Sleep, 1000
 
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := A_ScreenWidth
+global BottomSearchArea := A_ScreenHeight
+
+SetDefaultMouseSpeed, 2
+
+
+; Start the loop
+!s::StartLoop()
+StartLoop(){
+MsgBox, "start run"
+Loop, %loopAmt%
+    {
+        
+        CraftInv()
+        Loop, % rand(10, 15)
+        {
+            ClickOnPixel(lookforcolor)
+            randShortSleep()
+            randShortSleep()
+            randShortSleep()
+        }
+        
+    }
 }
+
+
+
+
+; alt and p to test clicking on Pixel
+!p::ClickOnPixel(lookforcolor)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 3, fast RGB
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L, x,  y + rand(20,50),, % mouseSpeed()       
+        return true
+    }
+	
+}
+
+
+; alt and c to drop logs from inv
+!c::CraftInv()
+CraftInv()
+{
+    while (CraftLog())
+    {
+        randLongSleep()
+	}
+	
+}
+
+!l::CraftLog()
+CraftLog(){
+
+    ImageSearch, logx, logy, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %logimg%
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        
+       
+    }
+
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %knifeimg%
+    if ErrorLevel
+    {
+        MouseClick, L, 2117, 1117
+    }
+    else
+    {
+        MouseClick, L,  x + rand(5,8),y + rand(5,7),, % mouseSpeed()
+    }    
+    MouseClick, L,  logx + rand(5,8),logy + rand(5,7),, % mouseSpeed()
+
+    Sleep, % rand(1000,2000)
+    Send, {Blind}{Space}
+
+    return true
+}
+
+
+mouseSpeed()
+{
+   return rand(3,10)
+}
+
+rand(min, max)
+
+ {
+   random, ran, %min%, %max%
+   return ran
+ }
+ 
+ randLongSleep()
+ {
+	Sleep, % rand(minRandLongSleep,maxRandLongSleep)
+ }
+ 
+ randShortSleep()
+ {
+    Sleep, % rand(minRandShortSleep,minRandShortSleep)
+ }
