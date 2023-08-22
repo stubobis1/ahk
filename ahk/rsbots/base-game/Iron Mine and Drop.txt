@@ -18,11 +18,11 @@ CoordMode, Mouse, Window
 global minMouseSpeed := 5
 global maxMouseSpeed := 15
 
-global minRandShortSleep := 500
-global maxRandShortSleep := 2000
+global minRandShortSleep := 10
+global maxRandShortSleep := 600
 
-global minRandLongSleep := 1000
-global maxRandLongSleep := 4000
+global minRandLongSleep := 200
+global maxRandLongSleep := 500
 
 
 global loopTimer := 50
@@ -47,9 +47,12 @@ Loop, %loopAmt%
 {
     
     DropInv()
-	Loop, % rand(1, 3)
+	Loop, % rand(3, 10)
 	{
-		ClickOnPixel(lookforcolor)
+		if (!ClickOnPixel(lookforcolor))
+		{
+			DropInv()
+		}
         randLongSleep()
 	}
     
@@ -84,7 +87,8 @@ DropInv()
 {
 	while (DropLog())
     {
-        randShortSleep()()
+        randShortSleep()
+		randShortSleep()
 	}
 	
 }
@@ -98,7 +102,6 @@ DropLog(){
     }
     else
     {
-		MouseMove, x,y, % mouseSpeed()
         MouseClick, L,  x + rand(5,10),y + rand(5,20),, % mouseSpeed()
         return true
     }
@@ -107,7 +110,7 @@ DropLog(){
 
 mouseSpeed()
 {
-   return rand(3,10)
+   return rand(2,5)
 }
 
 rand(min, max)
