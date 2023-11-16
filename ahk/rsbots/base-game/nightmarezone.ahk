@@ -7,13 +7,15 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-global img-spec := "specfull.png"
-global img-2hp := "specfull.png"
-global img-prayer := "specfull.png"
-global img-prayeron := "specfull.png"
-global img-rockcake := "specfull.png"
+
+global imgspec     := % A_ScriptDir . "\rslib\img\specfull.png"
+global img2hp      := % A_ScriptDir . "\rslib\img\2hp.png"
+global imgprayer   := % A_ScriptDir . "\rslib\img\prayer.png"
+global imgprayeron := % A_ScriptDir . "\rslib\img\prayeron.png"
+global imgrockcake := % A_ScriptDir . "\rslib\img\rockcake.png"
 ;global lookforcolor:= 0xff6901
 
+MsgBox, %img2hp%
 
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
@@ -47,7 +49,6 @@ Loop, %loopAmt%
     DropInv()
 	Loop, % rand(1, 3)
 	{
-		ClickOnPixel(lookforcolor)
         randLongSleep()
 	}
     
@@ -57,19 +58,20 @@ Loop, %loopAmt%
 
 
 
-; alt and p to test clicking on Pixel
-!p::ClickOnPixel(lookforcolor)
-ClickOnPixel(color)
+; alt and p to test
+!p::flickQuickPrayer()
+flickQuickPrayer()
 {
-    randShortSleep()
-    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 2, fast RGB
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  %imgprayer%
     if ErrorLevel
     {
         return false
     }
     else
     {
-        MouseClick, L,  % x + rand(5,10), % y + rand(20,50),, % mouseSpeed()        
+        MouseClick, L,  % x + rand(5,10), % y + rand(20,50)
+        randShortSleep()
+        MouseClick, L,  % x + rand(5,10), % y + rand(20,50)
         return true
     }
 	
@@ -104,22 +106,22 @@ DropLog(){
 
 mouseSpeed()
 {
-   return rand(3,10)
+    return rand(3,10)
 }
 
 rand(min, max)
 
- {
-   random, ran, %min%, %max%
-   return ran
- }
- 
- randLongSleep()
- {
-	Sleep, % rand(minRandLongSleep,maxRandLongSleep)
- }
- 
- randShortSleep()
- {
+{
+    random, ran, %min%, %max%
+    return ran
+}
+
+randLongSleep()
+{
+    Sleep, % rand(minRandLongSleep,maxRandLongSleep)
+}
+
+randShortSleep()
+{
     Sleep, % rand(minRandShortSleep,minRandShortSleep)
- }
+}

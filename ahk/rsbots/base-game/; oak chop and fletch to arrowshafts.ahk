@@ -1,28 +1,30 @@
-; iron mine and drop
+; oak chop and fletch to arrowshafts
 
+
+; Highlight the IRON with this hex color ff6901
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-global img-spec := "specfull.png"
-global img-2hp := "specfull.png"
-global img-prayer := "specfull.png"
-global img-prayeron := "specfull.png"
-global img-rockcake := "specfull.png"
-;global lookforcolor:= 0xff6901
+global logimg := "oak.png"
+global knifeimg := "knife.png"
+global lookforcolor:= 0xff6901
 
 
-CoordMode, Mouse, Screen
-CoordMode, Pixel, Screen
+CoordMode, Mouse, Window
 
 global minMouseSpeed := 5
 global maxMouseSpeed := 15
 
 global minRandShortSleep := 500
-global maxRandShortSleep := 2000
+global maxRandShortSleep := 10000
+
+global minRandLongSleep := 10000
+global maxRandLongSleep := 30000
+
 
 global loopTimer := 50
 global loopAmt := 2000
@@ -35,23 +37,24 @@ global TopSearchArea := 0
 global RightSearchArea := A_ScreenWidth
 global BottomSearchArea := A_ScreenHeight
 
+SetDefaultMouseSpeed, 2
 
 
 ; Start the loop
 !s::StartLoop()
 StartLoop(){
-MsgBox, "start loop"
+MsgBox, "start run"
 Loop, %loopAmt%
-{
-    
-    DropInv()
-	Loop, % rand(1, 3)
-	{
-		ClickOnPixel(lookforcolor)
-        randLongSleep()
-	}
-    
-}
+    {
+        
+        CraftInv()
+        Loop, % rand(1, 3)
+        {
+            ClickOnPixel(lookforcolor)
+            randLongSleep()
+        }
+        
+    }
 }
 
 
@@ -65,11 +68,12 @@ ClickOnPixel(color)
     PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 2, fast RGB
     if ErrorLevel
     {
+        MsgBox, no tree
         return false
     }
     else
     {
-        MouseClick, L,  % x + rand(5,10), % y + rand(20,50),, % mouseSpeed()        
+        MouseClick, L, x,  y + rand(20,50),, % mouseSpeed()       
         return true
     }
 	
@@ -77,28 +81,43 @@ ClickOnPixel(color)
 
 
 ; alt and c to drop logs from inv
-!c::DropInv()
-DropInv()
+!c::CraftInv()
+CraftInv()
 {
-	while (DropLog())
+    while (CraftLog())
     {
-        randShortSleep()()
+        randLongSleep()
 	}
 	
 }
 
-!l::DropLog()
-DropLog(){
-	ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %lookforimg%
+!l::CraftLog()
+CraftLog(){
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %knifeimg%
+    if ErrorLevel
+    {
+        MsgBox, no knife
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x + rand(5,10),y + rand(5,20),, % mouseSpeed()
+    }    
+
+	ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %logimg%
     if ErrorLevel
     {
         return false
     }
     else
     {
+        MsgBox, no log
         MouseClick, L,  x + rand(5,10),y + rand(5,20),, % mouseSpeed()
-        return true
     }
+    Sleep, % rand(500,1000)
+    Send, {Blind}{Space}
+
+    return true
 }
 
 

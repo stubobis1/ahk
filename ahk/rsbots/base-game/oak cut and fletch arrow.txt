@@ -1,28 +1,29 @@
 ; iron mine and drop
 
 
+; Highlight the IRON with this hex color ff6901
+
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-global img-spec := "specfull.png"
-global img-2hp := "specfull.png"
-global img-prayer := "specfull.png"
-global img-prayeron := "specfull.png"
-global img-rockcake := "specfull.png"
-;global lookforcolor:= 0xff6901
+global lookforimg := "oak.png"
+global lookforcolor:= 0xff6901
 
 
-CoordMode, Mouse, Screen
-CoordMode, Pixel, Screen
+CoordMode, Mouse, Window
 
 global minMouseSpeed := 5
 global maxMouseSpeed := 15
 
 global minRandShortSleep := 500
-global maxRandShortSleep := 2000
+global maxRandShortSleep := 10000
+
+global minRandLongSleep := 10000
+global maxRandLongSleep := 30000
+
 
 global loopTimer := 50
 global loopAmt := 2000
@@ -35,12 +36,13 @@ global TopSearchArea := 0
 global RightSearchArea := A_ScreenWidth
 global BottomSearchArea := A_ScreenHeight
 
+SetDefaultMouseSpeed, 2
 
 
 ; Start the loop
 !s::StartLoop()
 StartLoop(){
-MsgBox, "start loop"
+MsgBox, "start run"
 Loop, %loopAmt%
 {
     
@@ -69,7 +71,7 @@ ClickOnPixel(color)
     }
     else
     {
-        MouseClick, L,  % x + rand(5,10), % y + rand(20,50),, % mouseSpeed()        
+        MouseClick, L, x,  y + rand(20,50),, % mouseSpeed()       
         return true
     }
 	
@@ -96,6 +98,7 @@ DropLog(){
     }
     else
     {
+		MouseMove, x,y, % mouseSpeed()
         MouseClick, L,  x + rand(5,10),y + rand(5,20),, % mouseSpeed()
         return true
     }

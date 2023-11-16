@@ -19,7 +19,7 @@
 ;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-global lookforcolor:= 0xff6901
+global lookforcolor:= 0x03F9F8
 
 
 CoordMode, Mouse, Window
@@ -97,7 +97,7 @@ ClickOnPixel(color)
 CraftInv()
 {
     OpenInv()
-	while(OpenCoin())
+	while(!OpenCoin())
 	{
 		randShortSleep()
 	}

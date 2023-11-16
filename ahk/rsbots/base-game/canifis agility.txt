@@ -1,0 +1,166 @@
+CoordMode, Pixel, Screen
+
+global lookforcolor:= 0xff6901
+global minMouseSpeed:= 3
+global maxMouseSpeed:= 10
+
+global minRandWait := 200
+global shortMaxRandWait := 1000
+global maxRandWait := 10000
+global loopTimer := 500
+
+global loopAmt := 100
+global ShouldRun:= false
+
+global LeftSearchArea := 0
+global TopSearchArea := 0
+
+
+global RightSearchArea := A_ScreenWidth
+global BottomSearchArea := A_ScreenHeight
+
+CoordMode, Mouse, Screen
+CoordMode, Mouse, Window
+
+Loop, 500
+{
+mouseSpeed()
+
+SetTitleMatchMode, 2
+
+
+tt = RuneLite - StuBobis1 ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 468
+
+	
+ClickOnPixel(lookforcolor)
+Sleep 6000
+shortRandSleep()
+doALoop()
+
+
+
+
+}
+
+
+!m::doALoop()
+doALoop() ; with HighAlch
+{
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 392, 298
+shortRandSleep()
+shortRandSleep()
+shortRandSleep()
+Sleep, 6797
+shortRandSleep()
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 315, 381
+
+Sleep, 6297
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 304, 459
+
+Sleep, 9156
+shortRandSleep()
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 390, 495
+shortRandSleep()
+shortRandSleep()
+
+Sleep, 8156
+shortRandSleep()
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 432, 446
+
+Sleep, 11797
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 622, 388
+
+Sleep, 11500
+shortRandSleep()
+
+if LookForPixel(lookforcolor)
+ 	Return  
+MouseClick, L, 400, 291
+
+Sleep, 1000
+shortRandSleep()
+}
+
+
+
+
+
+!c::ClickOnPixel(lookforcolor)
+ClickOnPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast RGB
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseClick, L,  x + 5,y + 5
+        return true
+    }
+	
+}
+
+!l::LookForPixel(lookforcolor)
+LookForPixel(color)
+{
+    PixelSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, color, 1, fast RGB
+    if ErrorLevel
+    {
+        return false
+    }
+    else
+    {
+        MouseMove, x,y
+        
+        return true
+    }
+}
+
+
+
+
+
+randSleep()
+{
+	Sleep, % rand(minRandWait,maxRandWait)
+}
+
+
+shortRandSleep()
+{
+	Sleep, % rand(minRandWait,shortMaxRandWait)
+}
+
+
+mouseSpeed()
+{
+   SetDefaultMouseSpeed, % rand(5,10)
+}
+
+rand(min, max)
+{
+   random, ran, %min%, %max%
+   return ran
+}

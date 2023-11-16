@@ -19,7 +19,7 @@
 ;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-global lookforcolor:= 0xff6901
+global lookforcolor:= 0x03F9F8
 
 
 CoordMode, Mouse, Window
@@ -27,11 +27,11 @@ CoordMode, Mouse, Window
 global minMouseSpeed := 5
 global maxMouseSpeed := 15
 
-global minRandShortSleep := 1000
-global maxRandShortSleep := 2000
+global minRandShortSleep := 200
+global maxRandShortSleep := 600
 
-global minRandLongSleep := 60000
-global maxRandLongSleep := 69000
+global minRandLongSleep := 5000
+global maxRandLongSleep := 15000
 
 
 global loopTimer := 50
@@ -53,12 +53,10 @@ global imgAmethyst      := % A_ScriptDir . "\rslib\img\amethyst.png"
 global imgUncutSapphire := % A_ScriptDir . "\rslib\img\uncutSapphire.png"
 global imgUncutEmerald  := % A_ScriptDir . "\rslib\img\uncutEmerald.png"
 global imgUncutRuby     := % A_ScriptDir . "\rslib\img\uncutRuby.png"
-global imgBankersNote   := % A_ScriptDir . "\rslib\img\bankersNote.png"
-global imgCoinPouch     := % A_ScriptDir . "\rslib\img\coinPouch.png"
 
 
 ; Start the loop
-s::StartLoop()
+!s::StartLoop()
 StartLoop(){
 	MsgBox, "start run"
 	Loop, %loopAmt%
@@ -67,7 +65,14 @@ StartLoop(){
         mouseSpeed()
 		CraftInv()
         ClickOnPixel(lookforcolor)
-		randLongSleep()
+		Loop, % rand(15, 25)
+		{
+			if (!ClickOnPixel(lookforcolor))
+			{
+				CraftInv()
+			}
+			randLongSleep()
+		}
 	}
 }
 
@@ -97,18 +102,115 @@ ClickOnPixel(color)
 CraftInv()
 {
     OpenInv()
-	while(OpenCoin())
-	{
-		randShortSleep()
-	}
+    DropGems()
+	if (FindAmathyst() && FindAndClickChisel())
+    {
+        randShortSleep()
+        if(FindAndClickAmathyst())
+        {
+            randShortSleep()
+            Sleep, 1000
+            Send, {Blind}{Space}
+            Sleep, 8000
+            randLongSleep()
+            return True
+        }
+    }
+    return False
 }
 
 
 
-!p::OpenCoin()
-OpenCoin()
+FindAndClickChisel()
 {
-   ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgCoinPouch%
+    
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgChisel%
+    if ErrorLevel
+    {
+        ToolTip, no Chisel found, 0, 0
+        return false
+    }
+    else
+    {
+        MouseClick, L,  % x + rand(5,10), % y + rand(5,10)
+        return true
+    }
+}
+
+;!p::FindAndClickAmathyst()
+FindAndClickAmathyst()
+{
+    
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgAmethyst%
+    if ErrorLevel
+    {
+        ToolTip, no amathyst found, 0 , 0
+        return False
+    }
+    else
+    {
+        MouseClick, L,  % x + rand(5,10), % y + rand(5,10)
+        return True
+    }
+}
+
+FindAmathyst()
+{
+    
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgAmethyst%
+    if ErrorLevel
+    {
+        return False
+    }
+    else
+    {
+      
+        return True
+    }
+}
+
+
+!p::DropGems()
+DropGems()
+{
+    while (DropSapphire()) 
+	{
+	}
+    while (DropEmerald())  
+	{
+	}
+    while (DropRuby())  
+	{
+	}
+}
+DropSapphire() {
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgUncutSapphire%
+    if ErrorLevel
+    {
+        return False
+    }
+    else
+    {
+        MouseClick, L,  % x + rand(5,10), % y + rand(5,10)
+        return True
+    }
+}
+
+DropEmerald() {
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgUncutEmerald%
+    if ErrorLevel
+    {
+        return False
+    }
+    else
+    {
+        MouseClick, L,  % x + rand(5,10), % y + rand(5,10)
+        return True
+    }
+}
+
+DropRuby() {
+    ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgUncutRuby%
     if ErrorLevel
     {
         return False
@@ -162,6 +264,6 @@ randLongSleep()
  
 randShortSleep()
 {
-	Sleep, % rand(minRandShortSleep,maxRandShortSleep)
+	Sleep, % rand(minRandShortSleep,minRandShortSleep)
 }
 

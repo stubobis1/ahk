@@ -1,4 +1,4 @@
-; iron mine and drop
+; fish and drop
 
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -7,12 +7,11 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-global img-spec := "specfull.png"
-global img-2hp := "specfull.png"
-global img-prayer := "specfull.png"
-global img-prayeron := "specfull.png"
-global img-rockcake := "specfull.png"
-;global lookforcolor:= 0xff6901
+
+global img_invstart := "inv_start.png"
+global lookforimg1 := "trout.png"
+global lookforimg2 := "salmon.png"
+global lookforcolor:= 0xff6901
 
 
 CoordMode, Mouse, Screen
@@ -24,6 +23,10 @@ global maxMouseSpeed := 15
 global minRandShortSleep := 500
 global maxRandShortSleep := 2000
 
+global minRandLongSleep := 1000
+global maxRandLongSleep := 4000
+
+
 global loopTimer := 50
 global loopAmt := 2000
 
@@ -32,15 +35,24 @@ global LeftSearchArea := 0
 global TopSearchArea := 0
 
 
+
+global LeftInvArea := 0
+global TopInvArea := 0
+
+
 global RightSearchArea := A_ScreenWidth
 global BottomSearchArea := A_ScreenHeight
 
 
 
+
+ImageSearch, LeftInvArea, TopInvArea, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  %img_invstart%
+MsgBox, x: %LeftInvArea%
+
 ; Start the loop
 !s::StartLoop()
 StartLoop(){
-MsgBox, "start loop"
+MsgBox, "start run"
 Loop, %loopAmt%
 {
     
@@ -53,8 +65,6 @@ Loop, %loopAmt%
     
 }
 }
-
-
 
 
 ; alt and p to test clicking on Pixel
@@ -76,29 +86,48 @@ ClickOnPixel(color)
 }
 
 
-; alt and c to drop logs from inv
+; alt and c to drop from inv
 !c::DropInv()
 DropInv()
 {
-	while (DropLog())
+	while (DropFish())
     {
         randShortSleep()()
 	}
 	
 }
 
-!l::DropLog()
-DropLog(){
-	ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %lookforimg%
+!l::DropFish()
+DropFish(){
+
+    error1 := ""
+    error2 := ""
+	ImageSearch, x1, y1, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %lookforimg1%
     if ErrorLevel
+    {
+        error1 := True
+    }
+	ImageSearch, x2, y2, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea,  *Trans0x00FF00 %lookforimg2%
+    if ErrorLevel
+    {
+        error2 := True
+    }
+
+    if (error1 && error2)
     {
         return false
     }
+
+    if(x1 > x2)
+    {
+        MouseClick, L,  x1,y1
+    }
     else
     {
-        MouseClick, L,  x + rand(5,10),y + rand(5,20),, % mouseSpeed()
-        return true
+        MouseClick, L,  x2,y2
     }
+    return true
+    
 }
 
 
