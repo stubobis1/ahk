@@ -1,4 +1,4 @@
-;league power iron
+;temp range training
 
 
 
@@ -106,55 +106,52 @@ ClickOnPixel(color)
 }
 
 ;==========================================
-
-
-; Start the loop
-!s::StartLoop()
-StartLoop(){
-	MsgBox, "start run"
-	
-	Loop, %loopAmt%
-	{
-		ActivateWin()
-
-		DropInv()
-		Loop, % rand(2, 5)
-		{
-			mouseSpeed()
-			if (!ClickOnPixel(lookforcolor))
-			{
-				DropInv()
-			}
-			ClickOnPixel(lookforcolor)
-			randLongSleep()
-		}
-	}
-}
-
-
-
-
-
-
-
-; alt and c to drop logs from inv
-!c::DropInv()
-DropInv()
+Loop, 1
 {
-	OpenInv()
-	BankNote()
-}
 
-!l::BankNote()
-BankNote(){
-	ImageSearch, x, y, LeftSearchArea, TopSearchArea, RightSearchArea, BottomSearchArea, *3 %imgBankersNote%
-    if ErrorLevel
-    {
-        return false
-    }
-    else
-    {
-        MouseClick, L,  x + rand(5,10),y + rand(5,10),, % mouseSpeed()
-        return true
-    }
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 766
+
+MouseClick, L, 1148, 999
+
+Sleep, 3282
+
+MouseClick, L, 1144, 442
+
+Sleep, 4578
+
+Send, {Blind}u
+
+Sleep, 1422
+
+MouseClick, L, 544, 714
+
+Sleep, 5594
+
+MouseClick, L, 1708, 712
+
+Sleep, 6125
+
+Send, {Blind}u
+
+Sleep, 1704
+
+MouseClick, L, 1146, 545
+
+Sleep, 2718
+
+MouseClick, L, 1149, 872
+
+Sleep, 3156
+
+Send, {Blind}u
+
+Sleep, 1000
+
 }

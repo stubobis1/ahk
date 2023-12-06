@@ -3,9 +3,11 @@
 
 
 
+;OrangeColor
+;global lookforcolor:= 0xff6901
 
-global lookforcolor:= 0xff6901
-
+;CyanColor
+global lookforcolor:= 0x03f9f9
 
 CoordMode, Mouse, Window
 
@@ -16,7 +18,7 @@ global minRandShortSleep := 1000
 global maxRandShortSleep := 2000
 
 global minRandLongSleep := 3000
-global maxRandLongSleep := 12000
+global maxRandLongSleep := 6000
 
 
 global loopTimer := 50
@@ -49,6 +51,10 @@ global imgcookedTuna      := % A_ScriptDir . "\rslib\img\cookedTuna.png"
 global imgcookedShark     := % A_ScriptDir . "\rslib\img\cookedShark.png"
 
 
+global imgRuniteBar    := % A_ScriptDir . "\rslib\img\runiteBar.png"
+global imgAmantiteBar  := % A_ScriptDir . "\rslib\img\adamantiteBar.png"
+global imgMithrilBar   := % A_ScriptDir . "\rslib\img\mithrilBar.png"
+global imgSteelBar     := % A_ScriptDir . "\rslib\img\steelBar.png"
 
 
 ActivateWin(){
@@ -139,18 +145,11 @@ StartLoop(){
 	{
 		ActivateWin()
 
-		NoteInv()
-		Loop, % rand(2, 5)
-		{
-			mouseSpeed()
-			if (!ClickOnPixel(lookforcolor))
-			{
-				;NoteInv()
-                BankNote()
-			}
-			ClickOnPixel(lookforcolor)
-			randLongSleep()
-		}
+		mouseSpeed()
+
+		ClickOnPixel(lookforcolor)
+		randLongSleep()
+		
 	}
 }
 
@@ -160,31 +159,6 @@ StartLoop(){
 
 
 
-
-NoteInv()
-{
-	OpenInv()
-    randShortSleep()
-    if( findAndClickOnImg( imgcookedShark )) {
-        randShortSleep()
-        BankNote()
-        randShortSleep()
-    }
-
-    if( findAndClickOnImg( imgcookedSwordfish )) {
-        randShortSleep()
-        BankNote()
-        randShortSleep()
-    }
-
-    if( findAndClickOnImg( imgcookedTuna )) {
-        randShortSleep()
-        BankNote()
-        randShortSleep()
-    }
-
-	BankNote()
-}
 
 !l::BankNote()
 BankNote(){

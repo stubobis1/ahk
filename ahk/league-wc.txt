@@ -124,8 +124,9 @@ StartLoop(){
 			if (!ClickOnPixel(lookforcolor))
 			{
 				DropInv()
+				ClickOnPixel(lookforcolor)
 			}
-			ClickOnPixel(lookforcolor)
+			
 			randLongSleep()
 		}
 	}

@@ -12,8 +12,8 @@ CoordMode, Mouse, Window
 global minMouseSpeed := 3
 global maxMouseSpeed := 5
 
-global minRandShortSleep := 1000
-global maxRandShortSleep := 2000
+global minRandShortSleep := 100
+global maxRandShortSleep := 1500
 
 global minRandLongSleep := 50000
 global maxRandLongSleep := 60000
@@ -109,20 +109,6 @@ randShortSleep()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ; Start the loop
 s::StartLoop()
 StartLoop(){
@@ -132,21 +118,14 @@ StartLoop(){
         ActivateWin()
         mouseSpeed()
 		CraftInv()
-        ClickOnPixel(lookforcolor)
+        ; for non trickster
+        Loop, % rand(5,50)
+        {
+            ClickOnPixel(lookforcolor)
+        }
 		randLongSleep()
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 
 ; alt and p to test clicking on Pixel
 ;!p::ClickOnPixel(lookforcolor)
