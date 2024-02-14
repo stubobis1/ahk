@@ -1,0 +1,20 @@
+Loop, 10000
+{
+
+SetTitleMatchMode, 2
+CoordMode, Mouse, Window
+
+tt = RuneLite ahk_class SunAwtFrame
+WinWait, %tt%
+IfWinNotActive, %tt%,, WinActivate, %tt%
+
+Sleep, 2203
+
+MouseClick, L, 1042, 696
+
+random, ran, 5, 12
+Loop, % ran {
+Sleep, 60000
+}
+
+}
