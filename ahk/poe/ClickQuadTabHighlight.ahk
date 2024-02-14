@@ -27,8 +27,8 @@ global maxRandWait := 200
 
 global stoploop := false
 
->+o::toggleLoop()
-toggleLoop()
+>+o::EndLoop()
+EndLoop()
 {
     if(stoploop)
     {
@@ -63,7 +63,7 @@ ClearProph()
 
         if (stoploop)
         {
-            toggleLoop()
+            EndLoop()
             break
         }
     }

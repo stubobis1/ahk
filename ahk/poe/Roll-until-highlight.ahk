@@ -13,10 +13,10 @@ global BottomSearchArea := A_ScreenHeight
 
 global lookforimg := "hightlight-item-currency-tab.png"
 global minRandWait := 200
-global maxRandWait := 1000
+global maxRandWait := 500
 global stoploop := false
->+PgDn::toggleLoop()
-toggleLoop()
+>+PgDn::EndLoop()
+EndLoop()
 {
     if(stoploop)
     {
@@ -73,7 +73,7 @@ rollTheItem()
 		
         if (stoploop)
         {
-            toggleLoop()
+            EndLoop()
             break
         }
     }
